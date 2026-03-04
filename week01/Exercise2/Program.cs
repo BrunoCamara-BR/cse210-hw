@@ -7,8 +7,8 @@ class Program
         Console.Write("Enter your score: ");
         string userScore = Console.ReadLine();
         float score = float.Parse(userScore);
-        string letter = "";
-        string msg = "";
+        string letter;
+        string msg;
         string sign = "";
 
         // The letter
