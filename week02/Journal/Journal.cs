@@ -61,11 +61,12 @@ public class Journal
         foreach (String l in lines)
         {
             string[] parts = l.Split("|");
-            entry._date = parts[0];
-            entry._prompt = parts[1];
-            entry._answer = parts[2];
+            Entry entryImport = new Entry();
+            entryImport._date = parts[0];
+            entryImport._prompt = parts[1];
+            entryImport._answer = parts[2];
 
-            AddEntriesList(entry);
+            AddEntriesList(entryImport);
         }
         Console.WriteLine($"\n*** The file {fileName}.csv has been imported.");
     }
