@@ -47,9 +47,7 @@ public class Scripture
         {
             _words.Add(new Word(i));
         }
-
     }
-
     public string GetDisplayText()
     {
         string text = "";
@@ -97,4 +95,9 @@ public class Scripture
         }
         return isAllWordsHidden;
     }
+    public string GetDisplayReference()
+    {
+        return _reference.DisplayReference();
+    }
+
 }

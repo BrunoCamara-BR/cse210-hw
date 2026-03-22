@@ -55,13 +55,15 @@ class Program
             Scripture scripture = new Scripture(refScripture, textScripture);
 
             Console.Clear();
+            Console.WriteLine("-----------------------------");
+            Console.WriteLine(scripture.GetDisplayReference());
             Console.WriteLine(scripture.GetDisplayText());
 
             string option = "";
 
             while (option != "quit")
             {
-                Console.WriteLine("Type enter to hide word or \"quit\" to exit");
+                Console.Write("Type enter to hide more words or \"quit\" to exit: ");
                 option = Console.ReadLine().ToLower();
                 if (scripture.IsCompletedHidden())
                 {
@@ -72,6 +74,8 @@ class Program
                     scripture.HideRandomWords(wordsToHide);
                 }
                 Console.Clear();
+                Console.WriteLine("-----------------------------");
+                Console.WriteLine(scripture.GetDisplayReference());
                 Console.WriteLine(scripture.GetDisplayText());
 
             }

@@ -26,6 +26,6 @@ public class Reference
 
     public string DisplayReference()
     {
-        return $"{_book} {_charpter}: {(_endVerse == 0 ? $"{_verse}" : $"{_verse}-{_endVerse}")}";
+        return $"{_book} {_charpter}:{(_endVerse == 0 ? $"{_verse}" : $"{_verse}-{_endVerse}")}";
     }
 }
