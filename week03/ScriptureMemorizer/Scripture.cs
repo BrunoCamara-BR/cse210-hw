@@ -1,17 +1,19 @@
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 
 public class Scripture
 {
-    Reference _reference;
-    List<Word> _words = new List<Word>();
+    private Reference _reference;
 
-    public Scripture(string reference, string text)
+    private List<Versicle> _versicles = new List<Versicle>();
+
+    public Scripture(string reference)
     {
 
         // calling the builder of reference.
         string book;
-        int charpter;
+        int chapter;
         int verse;
         int endVerse;
 
@@ -22,82 +24,66 @@ public class Scripture
         string[] partsBook = reference.Split(" ");
         book = partsBook[0];
 
-        string[] partsCharpter = partsBook[1].Split(":");
-        charpter = int.Parse(partsCharpter[0]);
+        string[] chapterParts = partsBook[1].Split(":");
+        chapter = int.Parse(chapterParts[0]);
 
-        if (partsCharpter[1].Contains("-"))
+        if (chapterParts[1].Contains("-"))
         {
-            string[] intParts = partsCharpter[1].Split("-");
+            string[] intParts = chapterParts[1].Split("-");
             verse = int.Parse(intParts[0]);
             endVerse = int.Parse(intParts[1]);
             // ranged reference building
-            _reference = new Reference(book, charpter, verse, endVerse);
+            _reference = new Reference(book, chapter, verse, endVerse);
         }
         else
         {
             // normal reference building
-            verse = int.Parse(partsCharpter[1]);
-            _reference = new Reference(book, charpter, verse);
-        }
+            verse = int.Parse(chapterParts[1]);
+            _reference = new Reference(book, chapter, verse);
 
-        // calling the builder of Word.
-        string[] words = text.Split(" ");
-
-        foreach (string i in words)
-        {
-            _words.Add(new Word(i));
         }
     }
-    public string GetDisplayText()
-    {
-        string text = "";
-        for (int j = 0; j < _words.Count(); j++)
-        {
 
-            text += $"{_words[j].GetDisplay()}{(j == _words.Count() - 1 ? $"" : $" ")}";
-        }
-        return text;
-    }
-    public void HideRandomWords(int numberToHide)
-    {
-        List<int> wordsAvailable = new List<int>();
-        for (int k = 0; k < _words.Count(); k++)
-        {
-            if (!(_words[k].IsHidden()))
-            {
-                wordsAvailable.Add(k);
-            }
-        }
-
-        if (numberToHide > wordsAvailable.Count())
-        {
-            numberToHide = wordsAvailable.Count();
-        }
-
-        for (int _ = 0; _ < numberToHide; _++)
-        {
-            Random random = new Random();
-            int index = random.Next(wordsAvailable.Count());
-
-            _words[wordsAvailable[index]].Hide();
-            wordsAvailable.RemoveAt(index);
-        }
-    }
-    public bool IsCompletedHidden()
-    {
-        bool isAllWordsHidden = true;
-        for (int k = 0; k < _words.Count(); k++)
-        {
-            if (!(_words[k].IsHidden()))
-            {
-                isAllWordsHidden = false;
-            }
-        }
-        return isAllWordsHidden;
-    }
     public string GetDisplayReference()
     {
         return _reference.DisplayReference();
     }
+
+
+    public void Addversicle(int number, string text)
+    {
+
+        // building versicles
+        _versicles.Add(new Versicle(number, text));
+    }
+
+    public int GetFirstVerse()
+    {
+        return _reference._verse;
+    }
+    public int GetLastVerse()
+    {
+        return _reference._endVerse;
+    }
+
+    public string IndexVersicleShow(int index)
+    {
+        return _versicles[index].GetDisplayVersicle();
+    }
+
+    public bool IndexVersicleIsHidden(int index)
+    {
+        return _versicles[index].IsCompletedHidden();
+    }
+
+    public string IndexVersicleStatus(int index)
+    {
+        return _versicles[index].status();
+    }
+    public void IndexVersicleToHide(int index, int times)
+    {
+        _versicles[index].HideRandomWords(times);
+    }
+
 
 }
