@@ -59,7 +59,7 @@ class Program
             for (int i = firstVerse; i <= lastVerse; i++)
             {
                 Console.Write($"Enter the text of verse {i}: ");
-                textInput = Console.ReadLine();
+                textInput = Console.ReadLine().Trim();
                 scripture.Addversicle(i, textInput);
             }
 
@@ -119,6 +119,7 @@ class Program
                 Console.WriteLine(scripture.IndexVersicleStatus(versicleChosen));
                 Console.WriteLine("-----------------------------------------------------------");
                 Console.WriteLine(scripture.GetDisplayReference());
+                Console.WriteLine($"   Current Versicle: {scripture.IndexCurrentNumber(versicleChosen)}");
                 Console.WriteLine();
                 Console.WriteLine($"\"{scripture.IndexVersicleShow(versicleChosen)}\"");
                 Console.WriteLine();
@@ -142,6 +143,7 @@ class Program
                     Console.WriteLine(scripture.IndexVersicleStatus(versicleChosen));
                     Console.WriteLine("-----------------------------------------------------------");
                     Console.WriteLine(scripture.GetDisplayReference());
+                    Console.WriteLine($"   Current Versicle: {scripture.IndexCurrentNumber(versicleChosen)}");
                     Console.WriteLine();
                     Console.WriteLine($"\"{scripture.IndexVersicleShow(versicleChosen)}\"");
                     Console.WriteLine();

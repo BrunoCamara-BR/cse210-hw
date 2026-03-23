@@ -25,7 +25,7 @@ public class Versicle
         for (int j = 0; j < _words.Count(); j++)
         {
 
-            text += $"{_words[j].GetDisplay()}{(j == _words.Count() - 1 ? $"" : $" ")}";
+            text += $"{_words[j].GetDisplay()}{(j == _words.Count() - 1 ? $"" : $" ")}\n";
         }
         return text;
     }
@@ -83,5 +83,10 @@ public class Versicle
         int available = indexOfWordsAvailable.Count();
         int wordsHidden = allWords - available;
         return $"Total words: {allWords}, visible words: {available}, hidden words: {wordsHidden}";
+    }
+
+    public int CurrentNumber()
+    {
+        return _versicleNumber;
     }
 }

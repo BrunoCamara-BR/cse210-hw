@@ -85,5 +85,10 @@ public class Scripture
         _versicles[index].HideRandomWords(times);
     }
 
+    public int IndexCurrentNumber(int index)
+    {
+        return _versicles[index].CurrentNumber();
+    }
+
 
 }
