@@ -7,11 +7,13 @@
 // 1 - Levels: easy, medium, hard, machine
 // 2 - Support for multiple verses
 // 3 - Number of hidden words, visible words, and total word count indicator
+// Extra - tutorial :)
 
 
 using System;
 using System.Linq.Expressions;
 using System.Text.RegularExpressions;
+using System.Diagnostics;
 
 class Program
 {
@@ -27,8 +29,19 @@ class Program
             int wordsToHide = 0;
 
             Console.Clear();
-            Console.WriteLine("Welcome to the Scripture Memorizer\n");
+            Console.WriteLine("Welcome to the Scripture Memorizer");
             Console.WriteLine();
+            Console.Write("Do you want to watch the tutorial (yes/no)? ");
+            bool tutorial = Console.ReadLine().ToLower() == "yes";
+            if (tutorial)
+            {
+                Process.Start(new ProcessStartInfo
+                {
+                    FileName = "https://youtu.be/RYXwBZYFDSk",
+                    UseShellExecute = true
+                });
+            }
+
 
             // options to change
             Console.Write("Enter the reference (e.g., 'Alma 37:37' or 'John 3:5-7'): ");
