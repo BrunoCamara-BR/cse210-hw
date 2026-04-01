@@ -52,7 +52,7 @@ public class Scripture
 
     public void Addversicle(int number, string text)
     {
-
+        
         // building versicles
         _versicles.Add(new Versicle(number, text));
     }
