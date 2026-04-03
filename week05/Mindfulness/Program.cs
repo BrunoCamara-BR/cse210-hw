@@ -6,6 +6,7 @@
 // 1 - The reflection activity will never repeat the same prompt in a single session.
 // 2 - Added a loading animation.
 // 3 - Added two additional types of animations for exercises.
+// 4 - Listing activity don't account empty answer.
 
 using System;
 using System.Text.RegularExpressions;
@@ -54,12 +55,12 @@ class Program
 
         Console.Clear();
         Console.WriteLine();
-        Console.WriteLine("Welcome Mindfulness Program");
-        Console.WriteLine();
         new ExerciseBase().LoadingAnimation();
         Console.WriteLine();
 
         Console.Clear();
+        Console.WriteLine("Welcome Mindfulness Program");
+        Console.WriteLine();
         Console.WriteLine("Menu Options:");
         while (!(option == 4))
         {

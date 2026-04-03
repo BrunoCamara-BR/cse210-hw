@@ -12,7 +12,8 @@ public class Breathing : ExerciseBase
     {
         // DateTime endTime = DateTime.Now.AddSeconds(_duration);
 
-        int breatheTime = (int)Math.Round(_duration * 0.4);
+        int breatheTimeIn = (int)Math.Round(_duration * 0.4);
+        int breatheTimeOut = _duration - breatheTimeIn;
 
         // first time start slowly :)
         Console.Write("\nBreathe in...");
@@ -23,11 +24,12 @@ public class Breathing : ExerciseBase
         Console.WriteLine();
         Console.WriteLine();
 
-        breatheTime -= 2;
+        breatheTimeIn -= 2;
+        breatheTimeOut -= 3;
 
-        for (int i = 0; i <= (breatheTime / 4); i++)
+        for (int i = 0; i <= (breatheTimeIn / 4); i++)
         {
-            if (breatheTime > 8)
+            if (breatheTimeIn > 8)
             {
                 Console.Write("Breathe in...");
                 base.Countdown(4000);
@@ -36,32 +38,48 @@ public class Breathing : ExerciseBase
                 base.Countdown(6000);
                 Console.WriteLine();
                 Console.WriteLine();
-                breatheTime -= 4;
+                breatheTimeIn -= 4;
+                breatheTimeOut -= 6;
             }
-            else if (breatheTime > 4 && breatheTime < 8)
+            else if (breatheTimeIn > 4 && breatheTimeIn < 8)
             {
-                // repeat 2 proportional times
-                for (int j = 0; j < 2; j++)
-                {
-                    Console.Write("Breathe in...");
-                    base.Countdown((breatheTime / 2) * 1000);
-                    Console.WriteLine();
-                    Console.Write("Now breathe out...");
-                    base.Countdown((int)Math.Ceiling((breatheTime / 2) * 1.5 * 1000));
-                    Console.WriteLine();
-                    Console.WriteLine();
-                }
-                breatheTime = 0;
+
+
+                Console.Write("Breathe in...");
+                base.Countdown((breatheTimeIn - (breatheTimeIn / 2)) * 1000);
+                breatheTimeIn -= breatheTimeIn - (breatheTimeIn / 2);
+                Console.WriteLine();
+                Console.Write("Now breathe out...");
+                base.Countdown((breatheTimeOut - (breatheTimeOut / 2)) * 1000);
+                breatheTimeOut -= breatheTimeOut - (breatheTimeOut / 2);
+                Console.WriteLine();
+                Console.WriteLine();
+
+
+                Console.Write("Breathe in...");
+                base.Countdown((breatheTimeIn * 1000));
+                breatheTimeIn = 0;
+                Console.WriteLine();
+                Console.Write("Now breathe out...");
+                base.Countdown(breatheTimeOut * 1000);
+                breatheTimeOut = 0;
+                Console.WriteLine();
+                Console.WriteLine();
+
+
             }
             else
             {
                 Console.Write("Breathe in...");
-                base.Countdown(breatheTime * 1000);
+                base.Countdown(breatheTimeIn * 1000);
+                breatheTimeIn = 0;
+                Console.WriteLine();
                 Console.WriteLine();
                 Console.Write("Now breathe out...");
-                base.Countdown(((int)Math.Ceiling(breatheTime * 1.5)) * 1000);
+                base.Countdown(breatheTimeOut * 1000);
+                breatheTimeOut = 0;
                 Console.WriteLine();
-                breatheTime = 0;
+                Console.WriteLine();
             }
         }
 
