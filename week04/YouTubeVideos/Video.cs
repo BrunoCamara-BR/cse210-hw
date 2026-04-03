@@ -14,12 +14,12 @@ public class Video
         _length = length;
     }
 
-    public void CommentVideo(Comment commentVideo)
+    public void AddCommentVideo(Comment commentVideo)
     {
         _comments.Add(commentVideo);
     }
 
-    public int NumberOfComments()
+    public int GetNumberOfComments()
     {
         return _comments.Count;
     }

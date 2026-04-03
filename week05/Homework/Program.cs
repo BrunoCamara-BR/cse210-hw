@@ -15,5 +15,6 @@ class Program
 
         WritingAssignment writingAssignment = new WritingAssignment("Mathew", "European History", "The Causes of World War II");
         Console.WriteLine(writingAssignment.GetWritingInformation());
+
     }
 }
