@@ -1,0 +1,4 @@
+a|1
+SimpleGloal|qa|a|1|1|True
+EternalGoal|a|aa|1|0|False
+CheckListGoal|aa|as|2|0|False|2|2|0
